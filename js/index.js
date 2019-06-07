@@ -49,7 +49,7 @@ let startPos = 1910;
 const endPos = 552;
 let interval = setInterval(moveImg, 5);
 
-function moveImg(removeDiv){
+function moveImg(){
     if(startPos === endPos){
         clearInterval(interval);
         funBus.style.position = "relative";
@@ -74,6 +74,6 @@ funBus.addEventListener("load", function(){
     this.style.bottom = "241px";
     this.style.width = "800px";
     introSection.prepend(fillerDiv);
-    moveImg(fillerDiv);
+    moveImg();
 });
 
