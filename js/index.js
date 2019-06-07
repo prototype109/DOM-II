@@ -40,3 +40,40 @@ travelImg.forEach(img => {
         //this.style.margin = "0 auto";
     });
 });
+
+//idea for code came from here https://www.w3schools.com/howto/howto_js_animate.asp
+
+let funBus = document.querySelector('.intro img');
+let introSection = document.querySelector('.intro');
+let startPos = 1910;
+const endPos = 552;
+let interval = setInterval(moveImg, 5);
+
+function moveImg(removeDiv){
+    if(startPos === endPos){
+        clearInterval(interval);
+        funBus.style.position = "relative";
+        funBus.style.bottom = "0";
+        funBus.style.right = "0";
+        funBus.style.zIndex = "-1";
+        introSection.removeChild(introSection.firstChild);
+    }
+    else{
+        startPos--;
+        funBus.style.right = `${startPos}px`;
+    }
+}
+
+funBus.addEventListener("load", function(){
+    let fillerDiv = document.createElement('div');
+    fillerDiv.style.height = "240px";
+    fillerDiv.style.width = "800px";
+
+    this.style.position = "fixed";
+    this.style.right = "1500px";
+    this.style.bottom = "241px";
+    this.style.width = "800px";
+    introSection.prepend(fillerDiv);
+    moveImg(fillerDiv);
+});
+
