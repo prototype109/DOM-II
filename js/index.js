@@ -71,9 +71,16 @@ funBus.addEventListener("load", function(){
 
     this.style.position = "fixed";
     this.style.right = "1500px";
-    this.style.bottom = "241px";
+    this.style.bottom = "607px";
     this.style.width = "800px";
     introSection.prepend(fillerDiv);
     moveImg();
 });
 
+let button = document.querySelectorAll('.btn');
+
+console.log(button);
+
+button.forEach(btn => btn.addEventListener('dblclick', function(){
+    this.style.background = "red";
+}));
