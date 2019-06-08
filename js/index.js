@@ -87,19 +87,16 @@ const textBox = document.createElement('textarea');
 const submit = document.createElement('button');
 const cancle = document.createElement('button');
 const pDiv = document.createElement('div');
-const newParagraph = document.createElement('p');
-let textBoxInDiv;
-let currentText = "default";
+let currentText = [];
 
 paragraph.forEach(p => {
         p.addEventListener('click', function(){
-        currentText = this.textContent;
+        currentText.push(this.textContent);
         console.log(currentText);
         textBox.rows = "4";
         textBox.cols = "10";
         submit.textContent = "submit";
         cancle.textContent = "cancel";
-
         //this.style.display = "none";
         //this.textContent = "";
         //parent = p.parentNode;
@@ -112,9 +109,23 @@ paragraph.forEach(p => {
 });
 
 submit.addEventListener('click', function(){
+    const newParagraph = document.createElement('p');
     //currentText = textBox.value;
     //console.log(currentText);
     newParagraph.textContent = textBox.value;
     //newParagraph.style.display = "block";
     pDiv.parentNode.replaceChild(newParagraph, pDiv);
-})
+});
+
+cancle.addEventListener('click', function(){
+    const newParagraph = document.createElement('p');
+    //currentText = textBox.value;
+    //console.log(currentText);
+    newParagraph.textContent = currentText.pop();
+    //newParagraph.style.display = "block";
+    pDiv.parentNode.replaceChild(newParagraph, pDiv);
+});
+
+textBox.addEventListener('focus', function(){
+    this.style.background = "green";
+});
