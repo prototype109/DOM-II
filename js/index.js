@@ -5,6 +5,10 @@ links.forEach(link =>{
     link.addEventListener('wheel', function(){
         link.style.display = "none";
     });
+
+    link.addEventListener('click', function(event){
+        event.preventDefault();
+    });
 });
 
 const travelImg = document.querySelectorAll('.img-content img');
@@ -44,6 +48,10 @@ travelImg.forEach(img => {
 
 const funBus = document.querySelector('.intro img');
 const introSection = document.querySelector('.intro');
+const destinationDiv = document.querySelector('.content-destination');
+const boatDiv = document.createElement('div');
+const boatImg = document.createElement('img');
+
 let startPos = 1910;
 const endPos = 552;
 const interval = setInterval(moveImg, 5);
@@ -68,13 +76,34 @@ funBus.addEventListener("load", function(){
     fillerDiv.style.height = "240px";
     fillerDiv.style.width = "800px";
 
+    boatImg.src = "img/destination.jpg";
+    //boatImg.style.margin = "50px";
+
+    //boatDiv.style.position = "absolute";
+    boatDiv.style.padding = "50px";
+    boatDiv.style.background = "white";
+
     this.style.position = "fixed";
     this.style.right = "1500px";
     this.style.bottom = "607px";
     this.style.width = "800px";
+
+    destinationDiv.removeChild(document.querySelector('.content-destination img'));
+
     introSection.prepend(fillerDiv);
+    boatDiv.appendChild(boatImg);
+    destinationDiv.appendChild(boatDiv);
     moveImg();
 });
+
+boatDiv.addEventListener('click', function(){
+    this.style.background = "green";
+});
+
+boatImg.addEventListener('click', function(event){
+    event.stopPropagation();
+    this.style.visibility = "hidden";
+})
 
 const button = document.querySelectorAll('.btn');
 
@@ -142,3 +171,8 @@ textBox.addEventListener('select', function(){
 window.addEventListener('resize', function(){
     wholePage.style.background = "red";
 });
+
+textBox.addEventListener('scroll', function(){
+    textBox.style.background = "orange";
+});
+
