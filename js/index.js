@@ -108,14 +108,13 @@ paragraph.forEach(p => {
     });
 });
 
-submit.addEventListener('click', function(){
+function submitText(){
     const newParagraph = document.createElement('p');
-    //currentText = textBox.value;
-    //console.log(currentText);
     newParagraph.textContent = textBox.value;
-    //newParagraph.style.display = "block";
     pDiv.parentNode.replaceChild(newParagraph, pDiv);
-});
+}
+
+submit.addEventListener('click', submitText);
 
 cancle.addEventListener('click', function(){
     const newParagraph = document.createElement('p');
@@ -129,3 +128,9 @@ cancle.addEventListener('click', function(){
 textBox.addEventListener('focus', function(){
     this.style.background = "green";
 });
+
+textBox.addEventListener('keydown', function(event){
+    if(event.key === "Enter"){
+        submitText();
+    }
+})
