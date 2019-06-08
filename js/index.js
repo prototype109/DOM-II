@@ -1,5 +1,5 @@
 // Your code goes here
-let links = document.querySelectorAll('.nav-link');
+const links = document.querySelectorAll('.nav-link');
 
 links.forEach(link =>{
     link.addEventListener('wheel', function(){
@@ -7,8 +7,8 @@ links.forEach(link =>{
     });
 });
 
-let travelImg = document.querySelectorAll('.img-content img');
-let wholePage = document.querySelector('body');
+const travelImg = document.querySelectorAll('.img-content img');
+const wholePage = document.querySelector('body');
 
 function pictureMode(pic){
     let picturePresenter = document.createElement('div');
@@ -26,7 +26,6 @@ function pictureMode(pic){
 
     wholePage.prepend(picturePresenter);
     picturePresenter.appendChild(picture);
-    console.log(picturePresenter);
 
     picturePresenter.addEventListener('click', function(){
         wholePage.removeChild(wholePage.firstChild);
@@ -43,11 +42,11 @@ travelImg.forEach(img => {
 
 //idea for code came from here https://www.w3schools.com/howto/howto_js_animate.asp
 
-let funBus = document.querySelector('.intro img');
-let introSection = document.querySelector('.intro');
+const funBus = document.querySelector('.intro img');
+const introSection = document.querySelector('.intro');
 let startPos = 1910;
 const endPos = 552;
-let interval = setInterval(moveImg, 5);
+const interval = setInterval(moveImg, 5);
 
 function moveImg(){
     if(startPos === endPos){
@@ -65,7 +64,7 @@ function moveImg(){
 }
 
 funBus.addEventListener("load", function(){
-    let fillerDiv = document.createElement('div');
+    const fillerDiv = document.createElement('div');
     fillerDiv.style.height = "240px";
     fillerDiv.style.width = "800px";
 
@@ -77,10 +76,45 @@ funBus.addEventListener("load", function(){
     moveImg();
 });
 
-let button = document.querySelectorAll('.btn');
-
-console.log(button);
+const button = document.querySelectorAll('.btn');
 
 button.forEach(btn => btn.addEventListener('dblclick', function(){
     this.style.background = "red";
 }));
+
+const paragraph = document.querySelectorAll('p');
+const textBox = document.createElement('textarea');
+const submit = document.createElement('button');
+const cancle = document.createElement('button');
+const pDiv = document.createElement('div');
+const newParagraph = document.createElement('p');
+let textBoxInDiv;
+let currentText = "default";
+
+paragraph.forEach(p => {
+        p.addEventListener('click', function(){
+        currentText = this.textContent;
+        console.log(currentText);
+        textBox.rows = "4";
+        textBox.cols = "10";
+        submit.textContent = "submit";
+        cancle.textContent = "cancel";
+
+        //this.style.display = "none";
+        //this.textContent = "";
+        //parent = p.parentNode;
+        pDiv.appendChild(textBox);
+        pDiv.appendChild(submit);
+        pDiv.appendChild(cancle);
+        //this.appendChild(pDiv);
+        this.parentNode.replaceChild(pDiv, this);
+    });
+});
+
+submit.addEventListener('click', function(){
+    //currentText = textBox.value;
+    //console.log(currentText);
+    newParagraph.textContent = textBox.value;
+    //newParagraph.style.display = "block";
+    pDiv.parentNode.replaceChild(newParagraph, pDiv);
+})
