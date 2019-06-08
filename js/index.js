@@ -135,6 +135,10 @@ textBox.addEventListener('keydown', function(event){
     }
 });
 
-textBox.addEventListener('select', function(event){
+textBox.addEventListener('select', function(){
     alert(`${this.value.substring(this.selectionStart, this.selectionEnd)}`);
+});
+
+window.addEventListener('resize', function(){
+    wholePage.style.background = "red";
 });
