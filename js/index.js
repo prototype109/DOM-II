@@ -133,4 +133,8 @@ textBox.addEventListener('keydown', function(event){
     if(event.key === "Enter"){
         submitText();
     }
-})
+});
+
+textBox.addEventListener('select', function(event){
+    alert(`${this.value.substring(this.selectionStart, this.selectionEnd)}`);
+});
